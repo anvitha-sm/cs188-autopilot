@@ -329,7 +329,7 @@ StraightRoadSegment {
 TeslaModel3 {
   translation -61.668102973192994 48.299999993535984 0.3129232281813867
   rotation 0.00354603463722497 -7.24362526765768e-09 0.9999937127994114 3.1415899999475867
-  controller "fourth"
+  controller "controller"
   supervisor TRUE
   sensorsSlotFront [
     Camera {

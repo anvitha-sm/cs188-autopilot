@@ -185,7 +185,7 @@ footer strong{color:var(--ink);font-weight:600}
   <p class="sec-sub">Autonomous vehicles are getting good at routine driving — but they still fall apart when the situation calls for something a little more human.</p>
   <div class="prob-grid">
     <div class="prob-card"><div class="prob-title">Rigid Decision-Making</div><div class="prob-text">In 2023, a Waymo robotaxi in San Francisco blocked a responding fire truck by sitting stationary in an intersection. The vehicle was following its safety protocols correctly — it just had no way to read the broader context of the situation. That gap between rule-following and situational judgment is still a real problem.</div></div>
-    <div class="prob-card"><div class="prob-title">Cumbersome Override Interfaces</div><div class="prob-text">When a passenger wants to change lanes, adjust speed, or reroute, they are usually stuck with physical controls or complicated menus that interrupt the whole experience. These interfaces weren't designed with natural human behavior in mind, and it shows.</div></div>
+    <div class="prob-card"><div class="prob-title">Convoluted Override Interfaces</div><div class="prob-text">When a passenger wants to change lanes, adjust speed, or reroute, they are usually stuck with physical controls or complicated menus that interrupt the whole experience. These interfaces weren't designed with natural human behavior in mind, and it shows.</div></div>
     <div class="prob-card"><div class="prob-title">The Shared Autonomy Gap</div><div class="prob-text">Most systems force a binary choice — either the car is driving or you are. But real-world use demands something in between: a continuum where humans can step in and guide while the machine handles the execution. That middle ground is largely unexplored.</div></div>
     <div class="prob-card"><div class="prob-title">Our Approach</div><div class="prob-text">We built a system that lets users communicate through natural hand gestures and spoken commands, mapped directly to vehicle behavior in real time. Safety constraints act as guardrails so that human input enhances the system rather than creating new risks.</div></div>
   </div>
@@ -212,7 +212,6 @@ footer strong{color:var(--ink);font-weight:600}
   </div>
 </div></section>
 
-<!-- WAYPOINT PLANNER -->
 <section id="planner"><div class="container">
   <span class="sec-kicker">03 — Waypoint Planner</span>
   <h2 class="sec-title">Click-to-Navigate<br>Road Network</h2>
@@ -224,7 +223,6 @@ footer strong{color:var(--ink);font-weight:600}
   </div>
 </div></section>
 
-<!-- SIMULATOR -->
 <section id="simulator"><div class="container">
   <span class="sec-kicker">04 — Interactive Demo</span>
   <h2 class="sec-title">Try It Yourself</h2>
@@ -364,9 +362,7 @@ footer strong{color:var(--ink);font-weight:600}
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1675466124/drawing_utils.js" crossorigin="anonymous"></script>
 <script>
-// ─────────────────────────────────────────────
-// WAYPOINT PLANNER
-// ─────────────────────────────────────────────
+
 (function(){
   const pc=document.getElementById('plannerCanvas');
   const px=pc.getContext('2d');
@@ -751,10 +747,6 @@ footer strong{color:var(--ink);font-weight:600}
   });
 })();
 
-
-// ═════════════════════════════════════════════
-//  SIMULATOR
-// ═════════════════════════════════════════════
 const cv=document.getElementById('gameCanvas');
 const gx=cv.getContext('2d');
 const GW=cv.width,GH=cv.height;
@@ -1153,7 +1145,6 @@ document.addEventListener('keydown',e=>{
   else if(e.key>='1'&&e.key<='9'){carSpd=Math.min(13,parseInt(e.key));updateSpeedUI();appendLog(`[KB] speed -> ${carSpd}`,'ln');}
 });
 
-// MEDIAPIPE GESTURE RECOGNIZER
 let gestureRecognizer=null,camRunning=false,mpCam=null,lastGest=null,gestCD=0;
 const vidEl=document.getElementById('camVid'),camCvs=document.getElementById('camCvs'),camCtx2=camCvs.getContext('2d');
 
@@ -1240,7 +1231,6 @@ function onGestureResults(results){
   else if(g==='thumb_down'){doLaneChange(1,'gesture');appendLog('[GESTURE] thumbs down: inner lane','lg');gestCD=35;}
 }
 
-// SPEECH
 let SR=window.SpeechRecognition||window.webkitSpeechRecognition,recog=null,speechOn=false;
 function toggleSpeech(){
   if(speechOn){stopSpeech();return;}

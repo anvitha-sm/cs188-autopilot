@@ -52,7 +52,6 @@ section{padding:96px 24px}
 @media(max-width:680px){.prob-grid{grid-template-columns:1fr}}
 .prob-card{background:linear-gradient(135deg,rgba(255,255,255,.9),rgba(253,242,255,.7));border:1px solid var(--border);border-radius:16px;padding:28px;transition:all .25s}
 .prob-card:hover{border-color:var(--accent1);transform:translateY(-3px);box-shadow:0 12px 32px rgba(244,63,138,.12)}
-.prob-icon{font-size:2rem;margin-bottom:14px;display:block}
 .prob-title{font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:8px}
 .prob-text{font-size:.85rem;line-height:1.8;color:var(--sub)}
 #method{background:linear-gradient(160deg,#fff5fc,#f5f3ff)}
@@ -90,7 +89,6 @@ canvas#plannerCanvas{display:block;width:100%;cursor:crosshair;background:#eee8f
 .sim-wrap{border:1px solid var(--border2);border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(147,51,234,.1)}
 .sim-bar{background:linear-gradient(90deg,rgba(255,245,252,1),rgba(245,243,255,1));padding:11px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
 .sdot{width:11px;height:11px;border-radius:50%}
-.sdot:nth-child(1){background:#ff5f57}.sdot:nth-child(2){background:#ffbd2e}.sdot:nth-child(3){background:#28c840}
 .sim-bar-title{font-size:.7rem;font-weight:500;color:var(--sub);margin-left:8px}
 .sim-bar-kb{margin-left:auto;font-size:.6rem;color:#c4b5fd;font-weight:500}
 .sim-grid{display:grid;grid-template-columns:1fr 270px}
@@ -134,13 +132,6 @@ canvas#gameCanvas{display:block;width:100%;background:#f0e8ff}
 .dpad-center{background:linear-gradient(135deg,rgba(253,242,255,.8),rgba(245,243,255,.8));color:#d8b4fe;font-size:.45rem;border-color:var(--border)}
 .dpad-legend{font-size:.56rem;color:var(--sub);text-align:center;line-height:1.6;margin-top:2px}
 #video-section{background:linear-gradient(160deg,#fff5fc,#f5f3ff)}
-.vid-drop{margin-top:36px;border:2px dashed var(--border2);border-radius:20px;aspect-ratio:16/9;max-width:880px;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:var(--bg2);cursor:pointer;transition:all .3s}
-.vid-drop:hover{border-color:var(--pink);background:rgba(255,241,246,.5)}
-.play-btn{width:60px;height:60px;border-radius:50%;border:1.5px solid var(--pink);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--pink2);transition:all .3s}
-.vid-input{margin-top:8px;background:white;border:1px solid var(--border);border-radius:7px;color:var(--ink);font-family:'Inter',sans-serif;font-size:.74rem;padding:8px 13px;width:52%;outline:none;transition:border-color .2s}
-.vid-input:focus{border-color:var(--plum2)}
-.vid-go{margin-top:6px;padding:8px 20px;border-radius:7px;border:none;background:linear-gradient(135deg,var(--pink2),var(--plum2));color:white;font-family:'Inter',sans-serif;font-size:.74rem;font-weight:600;cursor:pointer;transition:opacity .2s}
-.vid-go:hover{opacity:.85}
 #results{background:var(--bg2)}
 .res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
 @media(max-width:680px){.res-grid{grid-template-columns:1fr}}
@@ -148,11 +139,13 @@ canvas#gameCanvas{display:block;width:100%;background:#f0e8ff}
 .res-card:hover{transform:translateY(-5px);border-color:var(--accent1);box-shadow:0 16px 40px rgba(192,38,211,.1)}
 .res-num{font-family:'Instrument Serif',serif;font-size:3rem;font-weight:400;color:var(--ink);display:block;margin-bottom:8px}
 .res-label{font-size:.78rem;color:var(--sub);line-height:1.55}
-#tech{background:linear-gradient(160deg,#fff5fc,#f0e8ff)}
-.pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:36px}
-.pill{padding:7px 16px;border-radius:100px;font-size:.76rem;font-weight:500;background:rgba(255,255,255,.7);border:1px solid var(--border);color:var(--sub);transition:all .2s;cursor:default}
-.pill:hover{border-color:var(--border2);color:var(--plum2);background:rgba(245,243,255,.9);transform:translateY(-2px)}
-.pill.ft{border-color:var(--border2);color:var(--plum3);background:linear-gradient(135deg,#f5f3ff,#fdf2ff)}
+.res-detail{font-size:.7rem;color:var(--sub);line-height:1.6;margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+.res-table{width:100%;border-collapse:collapse;margin-top:28px;font-size:.78rem}
+.res-table th{text-align:left;padding:8px 12px;font-size:.63rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);border-bottom:2px solid var(--border2)}
+.res-table td{padding:8px 12px;color:var(--sub);border-bottom:1px solid var(--border)}
+.res-table tr:last-child td{border-bottom:none}
+.res-table td:first-child{font-weight:600;color:var(--ink)}
+.res-table td.val{font-weight:700;color:var(--plum2)}
 footer{padding:48px 24px;text-align:center;border-top:1px solid var(--border);font-size:.8rem;color:var(--sub);background:var(--bg2)}
 footer strong{color:var(--ink);font-weight:600}
 </style>
@@ -172,12 +165,12 @@ footer strong{color:var(--ink);font-weight:600}
 <section id="hero">
   <div class="hero-blob b1"></div><div class="hero-blob b2"></div><div class="hero-blob b3"></div>
   <div class="hero-inner">
-    <div class="hero-kicker">COM SCI 188 · Final Project · 2025</div>
+    <div class="hero-kicker">COM SCI 188 &middot; Final Project &middot; 2026</div>
     <h1 class="hero-title">
       <span class="word"><span class="paren">(</span>auto<span class="paren">)</span></span>
       <span class="word word2">pilot</span>
     </h1>
-    <p class="hero-sub">Multimodal Human–Robot Interaction for Autonomous Vehicle Control — gesture recognition, speech commands, and shared autonomy in one system.</p>
+    <p class="hero-sub">Multimodal Human-Robot Interaction for Autonomous Vehicle Control — gesture recognition, speech commands, and shared autonomy in one system.</p>
     <div class="hero-chips">
       <span class="chip">Shared Autonomy</span><span class="chip">Gesture Control</span><span class="chip">Speech Recognition</span>
       <span class="chip">MediaPipe</span><span class="chip">A* Navigation</span><span class="chip">Webots</span><span class="chip">Computer Vision</span>
@@ -188,13 +181,13 @@ footer strong{color:var(--ink);font-weight:600}
 
 <section id="problem"><div class="container">
   <span class="sec-kicker">01 — Motivation</span>
-  <h2 class="sec-title">The Gap Between<br>Autonomy & Agency</h2>
-  <p class="sec-sub">Modern autonomous vehicles excel at routine tasks — but falter when human judgment is needed. We bridge that gap.</p>
+  <h2 class="sec-title">The Gap Between<br>Autonomy and Agency</h2>
+  <p class="sec-sub">Autonomous vehicles are getting good at routine driving — but they still fall apart when the situation calls for something a little more human.</p>
   <div class="prob-grid">
-    <div class="prob-card"><div class="prob-icon">🚒</div><div class="prob-title">Rigid Decision-Making</div><div class="prob-text">In 2023, a Waymo robotaxi blocked a responding fire truck by adhering rigidly to safety rules without reading the broader situation.</div></div>
-    <div class="prob-card"><div class="prob-icon">🎛️</div><div class="prob-title">Clunky Override Interfaces</div><div class="prob-text">Passengers who want to adjust speed, change lanes, or reroute must use complex physical controls — disrupting the pipeline.</div></div>
-    <div class="prob-card"><div class="prob-icon">🤝</div><div class="prob-title">The Shared Autonomy Gap</div><div class="prob-text">Systems force a binary: fully manual or fully autonomous. Real use demands a continuum where humans guide and machines execute.</div></div>
-    <div class="prob-card"><div class="prob-icon">⚡</div><div class="prob-title">Our Solution</div><div class="prob-text">Natural multimodal input — hands and voice — mapped to vehicle commands in real time, with safety constraints as guardrails.</div></div>
+    <div class="prob-card"><div class="prob-title">Rigid Decision-Making</div><div class="prob-text">In 2023, a Waymo robotaxi in San Francisco blocked a responding fire truck by sitting stationary in an intersection. The vehicle was following its safety protocols correctly — it just had no way to read the broader context of the situation. That gap between rule-following and situational judgment is still a real problem.</div></div>
+    <div class="prob-card"><div class="prob-title">Cumbersome Override Interfaces</div><div class="prob-text">When a passenger wants to change lanes, adjust speed, or reroute, they are usually stuck with physical controls or complicated menus that interrupt the whole experience. These interfaces weren't designed with natural human behavior in mind, and it shows.</div></div>
+    <div class="prob-card"><div class="prob-title">The Shared Autonomy Gap</div><div class="prob-text">Most systems force a binary choice — either the car is driving or you are. But real-world use demands something in between: a continuum where humans can step in and guide while the machine handles the execution. That middle ground is largely unexplored.</div></div>
+    <div class="prob-card"><div class="prob-title">Our Approach</div><div class="prob-text">We built a system that lets users communicate through natural hand gestures and spoken commands, mapped directly to vehicle behavior in real time. Safety constraints act as guardrails so that human input enhances the system rather than creating new risks.</div></div>
   </div>
 </div></section>
 
@@ -212,10 +205,9 @@ footer strong{color:var(--ink);font-weight:600}
     <div class="arch-mid"><div class="arch-vline"></div><div class="arch-mid-label">SHARED<br>CONTROL<br>LOOP</div><div class="arch-vline"></div></div>
     <div class="arch-col">
       <p style="font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#c4b5fd;margin-bottom:6px">Human Interaction</p>
-      <div class="mod"><div class="mod-badge bpk">Input</div><div class="mod-name">Gesture Recognizer</div><div class="mod-desc">MediaPipe hand landmarks on webcam. ✊ stop · 👍 kerb lane · 👎 inner lane. Background thread.</div></div>
-      <div class="mod"><div class="mod-badge bpk">Input</div><div class="mod-name">Speech Commands</div><div class="mod-desc">"faster" / "slower" → ±1 m/s. "left" / "right" near junctions → turn override + A* reroute.</div></div>
-      <div class="mod"><div class="mod-badge bb">Safety</div><div class="mod-name">Priority & Constraints</div><div class="mod-desc">Gesture stop → obstacle avoidance → human lane change → autonomous nav. Lane boundary checks gate unsafe commands.</div></div>
-      <div class="mod"><div class="mod-badge bb">Fallback</div><div class="mod-name">Safe Stop + Handoff</div><div class="mod-desc">Both lanes blocked → vehicle halts and waits for human input to resume.</div></div>
+      <div class="mod"><div class="mod-badge bpk">Input</div><div class="mod-name">Gesture Recognizer</div><div class="mod-desc">MediaPipe hand landmarks on webcam. Closed fist to stop, thumbs up for curb lane, thumbs down for inner lane. Runs in a background thread.</div></div>
+      <div class="mod"><div class="mod-badge bpk">Input</div><div class="mod-name">Speech Commands</div><div class="mod-desc">"faster" / "slower" adjusts speed by +/- 1 m/s within the allowed range.</div></div>
+      <div class="mod"><div class="mod-badge bb">Safety</div><div class="mod-name">Priority and Constraints</div><div class="mod-desc">Fist gesture stop overrides everything. Then obstacle avoidance. Then human lane change. Then autonomous navigation. Lane boundary checks block unsafe commands.</div></div>
     </div>
   </div>
 </div></section>
@@ -224,22 +216,11 @@ footer strong{color:var(--ink);font-weight:600}
 <section id="planner"><div class="container">
   <span class="sec-kicker">03 — Waypoint Planner</span>
   <h2 class="sec-title">Click-to-Navigate<br>Road Network</h2>
-  <p class="planner-intro">
-    A top-down city block network with curved roads. <em>Click anywhere</em> — the planner snaps to the nearest node, runs <strong>A* search</strong>, then generates right-hand traffic lane waypoints curve by curve. Orange nodes = A* visited; purple line = planned path in the correct driving lane.
-  </p>
+  <p class="planner-intro">Click anywhere on the road network below and the planner will generate right-hand waypoints along traffic using A*.</p>
   <div class="planner-wrap">
     <div class="planner-bar">
-      <div class="sdot"></div><div class="sdot"></div><div class="sdot"></div>
-      <span class="sim-bar-title">waypoint planner · A* · right-hand traffic</span>
-      <div class="planner-legend">
-        <span><span class="leg-dot" style="background:#f43f8a"></span>Car</span>
-        <span><span class="leg-dot" style="background:#22c55e"></span>Goal</span>
-        <span><span class="leg-dot" style="background:#a855f7"></span>Route</span>
-        <span><span class="leg-dot" style="background:#fb923c"></span>A* visited</span>
-      </div>
     </div>
     <canvas id="plannerCanvas" width="900" height="500"></canvas>
-    <div class="planner-hint" id="plannerHint">🖱 Click anywhere to set a destination — the car navigates with A* and right-hand traffic rules</div>
   </div>
 </div></section>
 
@@ -249,14 +230,13 @@ footer strong{color:var(--ink);font-weight:600}
   <h2 class="sec-title">Try It Yourself</h2>
   <p class="sim-intro">
     Use your real <strong>voice</strong> and <strong>hand gestures</strong>.
-    Enable mic and camera, speak <em>"left"</em> / <em>"right"</em> at intersections, say <em>"faster"</em> / <em>"slower"</em> to adjust speed.
-    Show ✊ to stop, 👍 kerb lane, 👎 inner lane. No camera? Use the <strong>keyboard panel</strong>.
+    Enable the mic and camera, then say <em>"faster"</em> or <em>"slower"</em> to adjust speed.
+    Show a closed fist to stop, thumbs up for curb lane, thumbs down for inner lane. No camera? Use the <strong>keyboard panel</strong>.
   </p>
   <div class="sim-wrap">
     <div class="sim-bar">
-      <div class="sdot"></div><div class="sdot"></div><div class="sdot"></div>
-      <span class="sim-bar-title">(auto)pilot · simulation v0.1</span>
-      <span class="sim-bar-kb">⌨ ←→ lanes · ↑↓ speed · space stop · L/R/S turn</span>
+      <span class="sim-bar-title">(auto)pilot &middot; simulation v0.1</span>
+      <span class="sim-bar-kb">arrow keys: lanes + speed &middot; space: stop/go</span>
     </div>
     <div class="sim-grid">
       <canvas id="gameCanvas" width="700" height="580" tabindex="0"></canvas>
@@ -266,7 +246,7 @@ footer strong{color:var(--ink);font-weight:600}
           <div style="display:flex;flex-direction:column;gap:8px;margin-top:9px">
             <div class="srow"><span>Speed</span><span class="sval" id="spv">5.0 m/s</span></div>
             <div class="sbar-track"><div class="sbar-fill" id="spb" style="width:38%"></div></div>
-            <div class="srow"><span>Lane</span><div class="lane-row"><div class="lbox on" id="l0">Kerb</div><div class="lbox" id="l1">Inner</div></div></div>
+            <div class="srow"><span>Lane</span><div class="lane-row"><div class="lbox on" id="l0">Curb</div><div class="lbox" id="l1">Inner</div></div></div>
             <div class="srow"><span>Obstacles</span><span class="sval" id="obsv">None</span></div>
             <div class="srow"><span>Mode</span><span class="sval" id="modev" style="color:#7c3aed">AUTO</span></div>
             <div class="srow"><span>Score</span><span class="sval" id="scorev">0</span></div>
@@ -277,32 +257,20 @@ footer strong{color:var(--ink);font-weight:600}
           <div class="kb-panel" style="margin-top:8px">
             <div class="kb-section-title">Navigation</div>
             <div class="dpad">
-              <div class="dpad-empty"></div><div class="dpad-key" id="dk-up">↑</div><div class="dpad-empty"></div>
-              <div class="dpad-key" id="dk-left">←</div><div class="dpad-key dpad-center" id="dk-space">⏸</div><div class="dpad-key" id="dk-right">→</div>
-              <div class="dpad-empty"></div><div class="dpad-key" id="dk-down">↓</div><div class="dpad-empty"></div>
+              <div class="dpad-empty"></div><div class="dpad-key" id="dk-up">up</div><div class="dpad-empty"></div>
+              <div class="dpad-key" id="dk-left">left</div><div class="dpad-key dpad-center" id="dk-space">stop</div><div class="dpad-key" id="dk-right">right</div>
+              <div class="dpad-empty"></div><div class="dpad-key" id="dk-down">down</div><div class="dpad-empty"></div>
             </div>
-            <div class="dpad-legend">↑↓ speed · ←→ lanes · space stop/go</div>
-            <div class="kb-section-title" style="margin-top:9px">Intersection Turns</div>
-            <div class="kb-grid">
-              <div class="kb-row"><span class="kb-key" id="dk-l">L</span><span class="kb-desc">Turn left</span></div>
-              <div class="kb-row"><span class="kb-key" id="dk-r">R</span><span class="kb-desc">Turn right</span></div>
-              <div class="kb-row"><span class="kb-key" id="dk-s">S</span><span class="kb-desc">Go straight</span></div>
-              <div class="kb-row"><span class="kb-key" id="dk-n">N</span><span class="kb-desc">Autopilot note</span></div>
-            </div>
+            <div class="dpad-legend">up/down: speed &middot; left/right: lanes &middot; space: stop/go</div>
             <div class="kb-section-title" style="margin-top:9px">Clickable Buttons</div>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px">
-              <button class="cbtn" onclick="kbSpeedUp()">⬆ Faster</button>
-              <button class="cbtn" onclick="kbStop()" id="stopbtn">⏸ Stop</button>
-              <button class="cbtn" onclick="kbSpeedDown()">⬇ Slower</button>
+              <button class="cbtn" onclick="kbSpeedUp()">Faster</button>
+              <button class="cbtn" onclick="kbStop()" id="stopbtn">Stop</button>
+              <button class="cbtn" onclick="kbSpeedDown()">Slower</button>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:4px">
-              <button class="cbtn" onclick="doLaneChange(0,'click')">← Kerb</button>
-              <button class="cbtn" onclick="doLaneChange(1,'click')">→ Inner</button>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-top:4px">
-              <button class="cbtn" onclick="chooseDir('left');flashKey('dk-l')">↰ Left</button>
-              <button class="cbtn" onclick="chooseDir('straight');flashKey('dk-s')">↑ Fwd</button>
-              <button class="cbtn" onclick="chooseDir('right');flashKey('dk-r')">↱ Right</button>
+              <button class="cbtn" onclick="doLaneChange(0,'click')">Curb Lane</button>
+              <button class="cbtn" onclick="doLaneChange(1,'click')">Inner Lane</button>
             </div>
           </div>
         </div>
@@ -311,21 +279,17 @@ footer strong{color:var(--ink);font-weight:600}
           <div class="ctrlbox" id="gestbox" style="margin-top:8px">
             <div class="cam-wrap"><video id="camVid" autoplay muted playsinline></video><canvas id="camCvs"></canvas></div>
             <div class="glabel" id="glabel">—</div>
-            <button class="cbtn" id="cambtn" onclick="toggleCamera()" style="margin-top:7px">📷 Enable Camera</button>
-            <div style="font-size:.6rem;color:#c4b5fd;margin-top:6px;text-align:center;font-weight:500">✊ stop · 🖐 resume · 👍 kerb · 👎 inner</div>
+            <button class="cbtn" id="cambtn" onclick="toggleCamera()" style="margin-top:7px">Enable Camera</button>
+            <div style="font-size:.6rem;color:#c4b5fd;margin-top:6px;text-align:center;font-weight:500">fist: stop &middot; open palm: resume &middot; thumbs up: curb &middot; thumbs down: inner</div>
           </div>
         </div>
         <div>
           <p class="panel-sec">Speech Control</p>
           <div class="ctrlbox" id="sbox" style="margin-top:8px">
-            <div class="hint">Say: <strong>"faster" · "slower" · "stop" · "go"</strong><br>At intersections: <strong>"left" · "right" · "straight"</strong></div>
-            <button class="cbtn" id="micbtn" onclick="toggleSpeech()">🎤 Enable Microphone</button>
+            <div class="hint">Say: <strong>"faster"</strong> or <strong>"slower"</strong> to adjust speed.</div>
+            <button class="cbtn" id="micbtn" onclick="toggleSpeech()">Enable Microphone</button>
             <div class="sheard" id="sheard"></div>
           </div>
-        </div>
-        <div>
-          <p class="panel-sec">System Log</p>
-          <div class="logbox" id="logarea" style="margin-top:8px"></div>
         </div>
       </div>
     </div>
@@ -334,80 +298,84 @@ footer strong{color:var(--ink);font-weight:600}
 
 <section id="video-section"><div class="container">
   <span class="sec-kicker">05 — Demo Video</span>
-  <h2 class="sec-title">See It In Action</h2>
-  <p class="sec-sub">(auto)pilot running live in Webots — gesture and speech control with real-time obstacle avoidance.</p>
-  <div class="vid-drop" id="vdrop">
-    <div class="play-btn">▶</div>
-    <div style="font-weight:600;font-size:1rem;color:var(--ink)">Drop video or embed a URL</div>
-    <div style="font-size:.74rem;color:var(--sub)">MP4 · YouTube · Vimeo</div>
-    <input class="vid-input" id="vurl" type="text" placeholder="Paste YouTube embed URL…" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter')embedVid()"/>
-    <button class="vid-go" onclick="embedVid()">Embed →</button>
-  </div>
-  <div id="vframe" style="display:none;border-radius:20px;overflow:hidden;max-width:900px;margin:0 auto;aspect-ratio:16/9;border:2px solid var(--border)">
-    <iframe id="vif" width="100%" height="100%" frameborder="0" allowfullscreen style="display:block"></iframe>
+  <h2 class="sec-title">Live Webots Demo</h2>
+  <div style="border-radius:20px;overflow:hidden;max-width:900px;margin:36px auto 0;aspect-ratio:16/9;border:2px solid var(--border2);box-shadow:0 8px 40px rgba(147,51,234,.12)">
+    <iframe
+      width="100%"
+      height="100%"
+      src="https://www.youtube.com/embed/fJAKKhQkMek"
+      title="(auto)pilot demo"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      style="display:block">
+    </iframe>
   </div>
 </div></section>
 
 <section id="results"><div class="container">
   <span class="sec-kicker">06 — Results</span>
   <h2 class="sec-title">System Performance</h2>
+
   <div class="res-grid">
-    <div class="res-card"><span class="res-num">&lt;100ms</span><div class="res-label">Gesture Recognition Latency</div></div>
-    <div class="res-card"><span class="res-num">3</span><div class="res-label">Interaction Modalities (click, gesture, speech)</div></div>
-    <div class="res-card"><span class="res-num">2-lane</span><div class="res-label">Obstacle Avoidance with Safe Handoff Fallback</div></div>
+    <div class="res-card">
+      <span class="res-num">90%</span>
+      <div class="res-label">Autonomous Navigation Goal Completion Rate</div>
+      <div class="res-detail">18 of 20 trials reached the destination. The two failures involved the vehicle circling due to an off-lane waypoint generation edge case.</div>
+    </div>
+    <div class="res-card">
+      <span class="res-num">~15%</span>
+      <div class="res-label">Average Obstacle Collision Rate</div>
+      <div class="res-detail">Across 20 trials with 9–11 obstacles each. Around 60% of collisions occurred because the vehicle perceived the obstacle but began the lane change too late.</div>
+    </div>
+    <div class="res-card">
+      <span class="res-num">&lt;1s</span>
+      <div class="res-label">Average Gesture Recognition Latency</div>
+      <div class="res-detail">Fist: 0.64s avg &middot; Thumbs up: 0.68s avg &middot; Thumbs down: 0.63s avg. All measured from gesture display to action start.</div>
+    </div>
   </div>
-  <div style="margin-top:44px;padding:32px;border:1.5px solid var(--border2);border-radius:20px;background:linear-gradient(135deg,rgba(253,242,255,.7),rgba(245,243,255,.7))">
-    <p style="font-size:.9rem;line-height:1.95;color:var(--sub)">The system demonstrated reliable shared-autonomy behavior across test scenarios. Human commands integrated without requiring full takeover. Obstacle avoidance triggered on single-lane blockages; safe halt when both blocked. Speech turn overrides rerouted within the <strong style="color:var(--plum2)">6-second junction window</strong>, and gesture lane changes fired with a <strong style="color:var(--plum2)">50-step avoidance suppression cooldown</strong>.</p>
-  </div>
+
+  <h3 style="font-family:'Instrument Serif',serif;font-size:1.6rem;font-weight:400;color:var(--ink);margin-top:56px;margin-bottom:8px;letter-spacing:-.01em">Speech Recognition</h3>
+  <p style="font-size:.88rem;color:var(--sub);line-height:1.8;max-width:680px;margin-bottom:4px">Tested over 20 trials per command. No illegal commands (above/below speed limit) were ever executed. "Slower" had one misrecognition as "lower".</p>
+  <table class="res-table">
+    <thead><tr><th>Command</th><th>Success Rate</th><th>Avg Latency</th></tr></thead>
+    <tbody>
+      <tr><td>"faster"</td><td class="val">19/20 (95%)</td><td class="val">2.92s</td></tr>
+      <tr><td>"slower"</td><td class="val">17/20 (85%)</td><td class="val">3.07s</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-family:'Instrument Serif',serif;font-size:1.6rem;font-weight:400;color:var(--ink);margin-top:48px;margin-bottom:8px;letter-spacing:-.01em">Gesture Recognition</h3>
+  <p style="font-size:.88rem;color:var(--sub);line-height:1.8;max-width:680px;margin-bottom:4px">All gestures tested over 20 trials each. No illegal commands were executed. One thumbs-up and one thumbs-down trial were misclassified as a closed fist due to camera angle.</p>
+  <table class="res-table">
+    <thead><tr><th>Gesture</th><th>Success Rate</th><th>Avg Latency</th></tr></thead>
+    <tbody>
+      <tr><td>Closed fist (stop)</td><td class="val">20/20 (100%)</td><td class="val">0.64s</td></tr>
+      <tr><td>Thumbs up (curb lane)</td><td class="val">19/20 (95%)</td><td class="val">0.68s</td></tr>
+      <tr><td>Thumbs down (inner lane)</td><td class="val">19/20 (95%)</td><td class="val">0.63s</td></tr>
+    </tbody>
+  </table>
+
 </div></section>
 
-<section id="tech"><div class="container">
-  <span class="sec-kicker">07 — Tech Stack</span>
-  <h2 class="sec-title">Built With</h2>
-  <div class="pills">
-    <span class="pill ft">MediaPipe</span><span class="pill ft">EfficientDet</span><span class="pill ft">Gesture Recognizer</span>
-    <span class="pill">Webots Simulator</span><span class="pill">Python 3</span><span class="pill">OpenCV</span><span class="pill">NumPy</span>
-    <span class="pill">SpeechRecognition</span><span class="pill">Google Speech-to-Text</span><span class="pill">A* Search</span>
-    <span class="pill">Threading + Locks</span><span class="pill">HSV Segmentation</span><span class="pill">Pure Pursuit Steering</span><span class="pill">Shared Autonomy</span>
-  </div>
-</div></section>
-
-<footer><p><strong>(auto)pilot</strong> · Multimodal Human–Robot Interaction for Autonomous Vehicle Control · COM SCI 188 · 2025</p></footer>
+<footer><p><strong>(auto)pilot</strong> &middot; Multimodal Human-Robot Interaction for Autonomous Vehicle Control &middot; COM SCI 188 &middot; 2026</p></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/vision_bundle.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1675466124/drawing_utils.js" crossorigin="anonymous"></script>
 <script>
 // ─────────────────────────────────────────────
-// VIDEO
+// WAYPOINT PLANNER
 // ─────────────────────────────────────────────
-function embedVid(){
-  let u=document.getElementById('vurl').value.trim();if(!u)return;
-  u=u.replace('watch?v=','embed/').replace('youtu.be/','www.youtube.com/embed/');
-  document.getElementById('vdrop').style.display='none';
-  document.getElementById('vframe').style.display='block';
-  document.getElementById('vif').src=u;
-}
-
-// ═════════════════════════════════════════════
-//  WAYPOINT PLANNER
-// ═════════════════════════════════════════════
 (function(){
   const pc=document.getElementById('plannerCanvas');
   const px=pc.getContext('2d');
   const PW=pc.width, PH=pc.height;
 
-  // Road half-width and lane offset from centre (right-hand traffic = drive on right)
-  // Perpendicular RIGHT of travel direction = rotate travel vector +90°: (uy, -ux)
-  // So right-side lane offset sign: we add +LANE_OFF in the (uy,-ux) direction.
-  const ROAD_HW = 18;   // half road width (each direction gets this much space)
-  const LANE_OFF = 9;   // distance from centre to lane centre
+  const ROAD_HW = 18;
+  const LANE_OFF = 9;
 
-  // ── Node layout: a non-overlapping city block ──
-  // Deliberately placed so NO two edges share the same straight path.
-  // Roads between non-axis-aligned nodes get a bezier curve.
   const N = {
-    // Outer ring (clockwise)
     A:{x:120, y:80},
     B:{x:460, y:60},
     C:{x:760, y:120},
@@ -415,24 +383,17 @@ function embedVid(){
     E:{x:700, y:460},
     F:{x:400, y:480},
     G:{x:130, y:420},
-    // Inner cluster
     H:{x:280, y:180},
     I:{x:560, y:150},
     J:{x:640, y:320},
     K:{x:350, y:340},
-    // Spurs
     L:{x:200, y:310},
   };
 
-  // ── Helper: bezier control point offset from the midpoint of f→t ──
-  // sign > 0 bows the road to the LEFT of f→t in canvas (Y-down) coords.
-  // For a two-way road: forward uses +curvature, reverse uses -curvature.
-  // getCentreCp then averages them → exactly the midpoint → correct centre line.
   function cp(fId, tId, curvature){
     const f=N[fId], t=N[tId];
     const mx=(f.x+t.x)/2, my=(f.y+t.y)/2;
     const dx=t.x-f.x, dy=t.y-f.y, len=Math.sqrt(dx*dx+dy*dy)||1;
-    // In canvas (Y-down), left-perpendicular of (dx,dy) is (dy,-dx)/len
     const lx= dy/len, ly=-dx/len;
     return {x: mx + lx*curvature, y: my + ly*curvature};
   }
@@ -442,50 +403,42 @@ function embedVid(){
     return {f:fId, t:tId, cp:{x:(f.x+t.x)/2, y:(f.y+t.y)/2}, isStraight:true};
   }
   function curved(fId, tId, curvature){
-    // forward bows left by +curvature; reverse direction uses -curvature
-    // so getCentreCp(f,t) = average of cp(f,t,+c) and cp(t,f,-c) = midpoint ✓
     return {f:fId, t:tId, cp:cp(fId,tId,curvature), isStraight:false};
   }
 
   const roads = [
-    // ── Outer ring ──
-    straight('A','B'), straight('B','A'),           // top edge: STRAIGHT
-    curved('B','C',+40), curved('C','B',-40),       // diagonal: CURVED
-    straight('C','D'), straight('D','C'),            // right edge: STRAIGHT
-    curved('D','E',+38), curved('E','D',-38),        // diagonal: CURVED
-    straight('E','F'), straight('F','E'),            // bottom edge: STRAIGHT
-    curved('F','G',+40), curved('G','F',-40),        // diagonal: CURVED
-    straight('G','A'), straight('A','G'),            // left edge: STRAIGHT
-
-    // ── Inner spokes ──
-    curved('A','H',+34), curved('H','A',-34),        // diagonal SE: CURVED
-    curved('B','I',+30), curved('I','B',-30),        // diagonal SE: CURVED
-    curved('C','I',+38), curved('I','C',-38),        // diagonal W:  CURVED
-    straight('H','I'), straight('I','H'),            // inner top: STRAIGHT
-    curved('H','K',+36), curved('K','H',-36),        // diagonal S: CURVED
-    curved('I','J',+38), curved('J','I',-38),        // diagonal SE: CURVED
-    curved('J','E',+32), curved('E','J',-32),        // diagonal S: CURVED
-    curved('K','F',+32), curved('F','K',-32),        // diagonal S: CURVED
-    straight('K','J'), straight('J','K'),            // inner mid: STRAIGHT
-    curved('G','L',+32), curved('L','G',-32),        // diagonal NE: CURVED
-    straight('L','K'), straight('K','L'),            // inner left: STRAIGHT
-    curved('H','L',+32), curved('L','H',-32),        // diagonal SW: CURVED
-    curved('D','J',+36), curved('J','D',-36),        // diagonal W: CURVED
+    straight('A','B'), straight('B','A'),
+    curved('B','C',+40), curved('C','B',-40),
+    straight('C','D'), straight('D','C'),
+    curved('D','E',+38), curved('E','D',-38),
+    straight('E','F'), straight('F','E'),
+    curved('F','G',+40), curved('G','F',-40),
+    straight('G','A'), straight('A','G'),
+    curved('A','H',+34), curved('H','A',-34),
+    curved('B','I',+30), curved('I','B',-30),
+    curved('C','I',+38), curved('I','C',-38),
+    straight('H','I'), straight('I','H'),
+    curved('H','K',+36), curved('K','H',-36),
+    curved('I','J',+38), curved('J','I',-38),
+    curved('J','E',+32), curved('E','J',-32),
+    curved('K','F',+32), curved('F','K',-32),
+    straight('K','J'), straight('J','K'),
+    curved('G','L',+32), curved('L','G',-32),
+    straight('L','K'), straight('K','L'),
+    curved('H','L',+32), curved('L','H',-32),
+    curved('D','J',+36), curved('J','D',-36),
   ];
 
-  // Build adjacency
   const adj={};
   Object.keys(N).forEach(id=>{adj[id]=[];});
   roads.forEach(r=>{
     const f=N[r.f],t=N[r.t];
-    // Approximate arc length as cost
     const dx=t.x-f.x,dy=t.y-f.y;
     let cost=Math.sqrt(dx*dx+dy*dy);
-    if(r.cp) cost*=1.15; // slight penalty for curves
+    if(r.cp) cost*=1.15;
     adj[r.f].push({to:r.t,cost});
   });
 
-  // ── A* ──
   function astar(start,goal){
     function h(a){const dx=N[a].x-N[goal].x,dy=N[a].y-N[goal].y;return Math.sqrt(dx*dx+dy*dy);}
     const g={},prev={},open=new Set([start]),closed=new Set();
@@ -519,13 +472,10 @@ function embedVid(){
     return best;
   }
 
-  // ── Get road def for f→t pair ──
   function getRoad(fId,tId){
     return roads.find(r=>r.f===fId&&r.t===tId)||null;
   }
 
-  // ── Get the shared centre-line control point for a road pair ──
-  // Average the two opposing CPs to get a stable midline curve
   function getCentreCp(fId,tId){
     const fwd=getRoad(fId,tId);
     const rev=getRoad(tId,fId);
@@ -538,7 +488,6 @@ function embedVid(){
     return {x:(f.x+t.x)/2,y:(f.y+t.y)/2};
   }
 
-  // ── Point along quadratic bezier at t ──
   function bezierPt(p0,p1,p2,t){
     const mt=1-t;
     return{
@@ -547,7 +496,6 @@ function embedVid(){
     };
   }
 
-  // ── Tangent at t on quadratic bezier ──
   function bezierTan(p0,p1,p2,t){
     const mt=1-t;
     const dx=2*(mt*(p1.x-p0.x)+t*(p2.x-p1.x));
@@ -556,13 +504,13 @@ function embedVid(){
     return{ux:dx/len,uy:dy/len};
   }
 
-  // ── Generate waypoints in the RIGHT lane of travel ──
+  function rightPerp(ux,uy){ return {rx:-uy, ry:ux}; }
+
   function edgeWaypoints(fId,tId,steps=20){
     const f=N[fId], t=N[tId];
     const road=getRoad(fId,tId);
     const pts=[];
     if(road && road.isStraight){
-      // Pure straight — no bezier, no approximation
       const dx=t.x-f.x, dy=t.y-f.y, len=Math.sqrt(dx*dx+dy*dy)||1;
       const ux=dx/len, uy=dy/len;
       const {rx,ry}=rightPerp(ux,uy);
@@ -572,7 +520,6 @@ function embedVid(){
         pts.push({ x:f.x+dx*s+rx*LANE_OFF, y:f.y+dy*s+ry*LANE_OFF, angle });
       }
     } else {
-      // Curved — sample bezier, offset right using correct Y-down perp
       const cpt=road ? road.cp : getCentreCp(fId,tId);
       for(let i=0;i<=steps;i++){
         const s=i/steps;
@@ -585,11 +532,7 @@ function embedVid(){
     return pts;
   }
 
-  // ── State ──
   let nodePath=[],waypoints=[],wpIdx=0;
-  // Start car at node A, on the RIGHT side of the road.
-  // A→B direction is roughly rightward (+x), so right-perp = (0,+1) in canvas.
-  // Right offset from A = (-uy, ux)*LANE_OFF where (ux,uy) = direction A→B.
   const _AB_dx=N['B'].x-N['A'].x, _AB_dy=N['B'].y-N['A'].y;
   const _AB_len=Math.sqrt(_AB_dx*_AB_dx+_AB_dy*_AB_dy);
   const _AB_ux=_AB_dx/_AB_len, _AB_uy=_AB_dy/_AB_len;
@@ -600,24 +543,14 @@ function embedVid(){
   let lastPlannerTs=0;
   const CAR_SPEED=90;
 
-  // ── Road type lookup ──
   function isRoadStraight(fId,tId){
     const r=getRoad(fId,tId)||getRoad(tId,fId);
     return r ? r.isStraight : false;
   }
 
-  // ── RIGHT-side perpendicular in canvas (Y-down) ──
-  // Forward direction (ux,uy). Screen-CW 90° = (-uy, ux). 
-  // Verify: heading right (1,0) → right-perp = (0,1) = screen-down ✓
-  //         heading down  (0,1) → right-perp = (-1,0) = screen-left ✓
-  //         heading up    (0,-1)→ right-perp = (1,0)  = screen-right ✓
-  function rightPerp(ux,uy){ return {rx:-uy, ry:ux}; }
-
-  // ── Draw helpers ──
   function drawRoadEdge(fId,tId){
     const f=N[fId], t=N[tId];
     if(isRoadStraight(fId,tId)){
-      // True straight band
       const dx=t.x-f.x, dy=t.y-f.y, len=Math.sqrt(dx*dx+dy*dy)||1;
       const ux=dx/len, uy=dy/len;
       const {rx,ry}=rightPerp(ux,uy);
@@ -631,7 +564,6 @@ function embedVid(){
       px.beginPath(); px.moveTo(f.x+rx*ROAD_HW, f.y+ry*ROAD_HW); px.lineTo(t.x+rx*ROAD_HW, t.y+ry*ROAD_HW); px.stroke();
       px.beginPath(); px.moveTo(f.x-rx*ROAD_HW, f.y-ry*ROAD_HW); px.lineTo(t.x-rx*ROAD_HW, t.y-ry*ROAD_HW); px.stroke();
     } else {
-      // Curved band — sample bezier, offset using correct Y-down perp
       const cpt=getCentreCp(fId,tId);
       const STEPS=28;
       const left=[], right=[];
@@ -654,7 +586,6 @@ function embedVid(){
     }
   }
 
-  // Draw centre lines (pink dashes) — only once per undirected road pair
   const drawnCentres=new Set();
   function drawCentreLine(fId,tId){
     const key=[fId,tId].sort().join('-');
@@ -673,7 +604,6 @@ function embedVid(){
     px.stroke(); px.setLineDash([]); px.restore();
   }
 
-  // Direction arrow in the right-side travel lane
   function drawArrow(fId,tId){
     const road=getRoad(fId,tId); if(!road) return;
     const f=N[fId], t=N[tId], cpt=road.cp;
@@ -688,31 +618,25 @@ function embedVid(){
 
   function drawNetwork(){
     px.fillStyle='#ece6f8';px.fillRect(0,0,PW,PH);
-    // Grid
     px.strokeStyle='rgba(167,139,250,.06)';px.lineWidth=1;
     for(let x=0;x<PW;x+=40){px.beginPath();px.moveTo(x,0);px.lineTo(x,PH);px.stroke();}
     for(let y=0;y<PH;y+=40){px.beginPath();px.moveTo(0,y);px.lineTo(PW,y);px.stroke();}
 
-    // Draw all road bands (draw each undirected pair once for the band, but directed arrows per direction)
     const drawnBands=new Set();
     roads.forEach(r=>{
       const key=[r.f,r.t].sort().join('-');
       if(!drawnBands.has(key)){drawnBands.add(key);drawRoadEdge(r.f,r.t);}
     });
-    // Centre lines
     drawnCentres.clear();
     roads.forEach(r=>drawCentreLine(r.f,r.t));
-    // Directional arrows
     roads.forEach(r=>drawArrow(r.f,r.t));
 
-    // Highlight A* visited nodes
     visitedSet.forEach(nid=>{
       if(!N[nid])return;
       px.beginPath();px.arc(N[nid].x,N[nid].y,11,0,Math.PI*2);
       px.fillStyle='rgba(251,146,60,.3)';px.fill();
     });
 
-    // Highlight planned path lane (RIGHT side of travel)
     if(nodePath.length>1){
       for(let i=0;i<nodePath.length-1;i++){
         const f=N[nodePath[i]], t=N[nodePath[i+1]];
@@ -744,14 +668,12 @@ function embedVid(){
       }
     }
 
-    // Waypoint dots
     waypoints.forEach((wp,i)=>{
       if(i%3!==0)return;
       px.beginPath();px.arc(wp.x,wp.y,2.5,0,Math.PI*2);
       px.fillStyle=i<wpIdx?'rgba(168,85,247,.2)':'rgba(168,85,247,.65)';px.fill();
     });
 
-    // Nodes
     Object.entries(N).forEach(([id,n])=>{
       px.beginPath();px.arc(n.x,n.y,7,0,Math.PI*2);
       px.fillStyle='rgba(255,255,255,.9)';px.fill();
@@ -761,7 +683,6 @@ function embedVid(){
       px.fillText(id,n.x,n.y);
     });
 
-    // Goal
     if(goalNode&&N[goalNode]){
       const g=N[goalNode];
       const pulse=0.5+0.5*Math.sin(Date.now()/280);
@@ -775,7 +696,6 @@ function embedVid(){
       px.globalAlpha=1;px.shadowBlur=0;px.restore();
     }
 
-    // Car
     px.save();
     px.translate(carX,carY);px.rotate(carAngle);
     px.shadowColor='rgba(244,63,138,.7)';px.shadowBlur=14;
@@ -798,7 +718,6 @@ function embedVid(){
         wpIdx++;
         if(wpIdx>=waypoints.length){
           animating=false;
-          document.getElementById('plannerHint').innerHTML='✅ Arrived! Click anywhere for a new destination.';
         }
       } else {
         carX+=dx/dist*step;carY+=dy/dist*step;
@@ -820,7 +739,7 @@ function embedVid(){
     goalNode=target;
     const {path,visited}=astar(start,target);
     visitedSet=new Set(visited);
-    if(!path){document.getElementById('plannerHint').innerHTML='⚠ No path found';return;}
+    if(!path){return;}
     nodePath=path;
     waypoints=[];
     for(let i=0;i<path.length-1;i++){
@@ -829,37 +748,20 @@ function embedVid(){
       waypoints.push(...wps);
     }
     wpIdx=0;animating=true;
-    document.getElementById('plannerHint').innerHTML=
-      `🗺 Path: <strong>${path.join(' → ')}</strong> &nbsp;·&nbsp; ${path.length-1} segments · ${visited.length} nodes explored`;
   });
 })();
 
 
 // ═════════════════════════════════════════════
-//  SIMULATOR  (first-person)
+//  SIMULATOR
 // ═════════════════════════════════════════════
 const cv=document.getElementById('gameCanvas');
 const gx=cv.getContext('2d');
 const GW=cv.width,GH=cv.height;
 
-// Road layout (right-hand traffic):
-//   sRN = perpendicular RIGHT of travel direction
-//   Road spans from -ROAD_HW to +ROAD_HW in the sRN direction
-//   Pink centre line at 0
-//   RIGHT half (positive sRN): two driving lanes
-//     Lane 0 (kerb)  — outermost right: offset = +LANE_W*1.5  (far from centre)
-//     Lane 1 (inner) — inner right:     offset = +LANE_W*0.5  (close to centre)
-//   Lane dividers: dashed white lines at ±LANE_W (between lane and kerb on each side)
-//   Left half (negative sRN): oncoming traffic — no player lanes there
-const ROAD_HW=72;   // half-road width (total road = 144px)
-const LANE_W =36;   // each lane is 36px wide
-
-// RIGHT-side lane centres (positive sRN offsets from centre):
-//   kerb lane   = LANE_W*1.5 = 54  (outermost right)
-//   inner lane  = LANE_W*0.5 = 18  (next to centre line)
-const LO = [LANE_W*1.5, LANE_W*0.5];  // [kerb=54, inner=18]
-
-// Lane divider between the two right lanes at +LANE_W = +36
+const ROAD_HW=72;
+const LANE_W =36;
+const LO = [LANE_W*1.5, LANE_W*0.5];
 const RDIV = LANE_W;
 
 let carSpd=5,curLane=0,targLane=0,laneT=1,laneFromOff=LO[0],laneToOff=LO[0];
@@ -868,10 +770,6 @@ let stopped=false,score=0,particles=[],obsArr=[],nextObsCd=60;
 const HDG_U=-Math.PI/2;
 let segs=[],curSegIdx=0,distInSeg=0;
 function sDir(h){return{dx:Math.cos(h),dy:Math.sin(h)}}
-// Visual right perpendicular in canvas (Y-down): rotate forward 90° CW on screen = (-sin h, cos h)... 
-// No: screen-CW rotation of (dx,dy) = (-dy, dx). Forward=(cos h, sin h) → right=(-sin h, cos h).
-// Verify: h=-π/2 (heading up, dx=0,dy=-1) → right=(-sin(-π/2), cos(-π/2))=(1,0) ✓ (screen right)
-// Verify: h=0 (heading right, dx=1,dy=0) → right=(0,1) ✓ (screen down = visual right when going right)
 function sRN(h){return{dx:-Math.sin(h),dy:Math.cos(h)}}
 function addSeg(h,fx,fy,len){
   const d=sDir(h);
@@ -909,7 +807,6 @@ function carPos(){
 
 let carHdg=HDG_U;
 
-// ── Draw road segment ──
 function drawSeg(seg,cx,cy,ch){
   const rn=sRN(seg.hdg),hw=ROAD_HW;
   const corners=[
@@ -927,12 +824,9 @@ function drawSeg(seg,cx,cy,ch){
     gx.setLineDash(dash);gx.strokeStyle=col;gx.lineWidth=lw;
     gx.beginPath();gx.moveTo(a.sx,a.sy);gx.lineTo(b.sx,b.sy);gx.stroke();gx.setLineDash([]);
   }
-  // Kerb edges (outermost road edges)
   wl(seg.sx+rn.dx*hw,seg.sy+rn.dy*hw,seg.ex+rn.dx*hw,seg.ey+rn.dy*hw,'#a78bfa',2);
   wl(seg.sx-rn.dx*hw,seg.sy-rn.dy*hw,seg.ex-rn.dx*hw,seg.ey-rn.dy*hw,'#a78bfa',2);
-  // Pink centre line (solid)
   wl(seg.sx,seg.sy,seg.ex,seg.ey,'#f43f8a',2.5);
-  // Dashed lane dividers — one on each side of centre, at ±RDIV
   wl(seg.sx+rn.dx*RDIV,seg.sy+rn.dy*RDIV,seg.ex+rn.dx*RDIV,seg.ey+rn.dy*RDIV,'rgba(255,255,255,.6)',1.5,[14,10]);
   wl(seg.sx-rn.dx*RDIV,seg.sy-rn.dy*RDIV,seg.ex-rn.dx*RDIV,seg.ey-rn.dy*RDIV,'rgba(255,255,255,.6)',1.5,[14,10]);
 }
@@ -941,7 +835,6 @@ let dashOff=0;
 function drawDashes(seg,cx,cy,ch){
   const d=sDir(seg.hdg),rn=sRN(seg.hdg);
   const step=44,sc=dashOff%step;
-  // Animated dashes on both lane dividers (±RDIV)
   for(const side of [RDIV, -RDIV]){
     for(let dist=sc;dist<seg.len;dist+=step){
       const p1=w2s(seg.sx+d.dx*dist+rn.dx*side,seg.sy+d.dy*dist+rn.dy*side,cx,cy,ch);
@@ -986,13 +879,10 @@ function drawJunction(jx,jy,hdg,camX,camY,ch){
   gx.shadowColor='rgba(244,63,138,.4)';gx.shadowBlur=10;gx.stroke();gx.shadowBlur=0;
 }
 
-// ── Draw the baked turn arc (world→screen) ──
-// Only draw during turning. The arc is in world space; we project each sample.
 function drawTurnArcWorld(camX,camY,ch){
   if(!turning)return;
   const t=turnProgress*turnProgress*(3-2*turnProgress);
   const endA=bakedArcA0+(bakedArcA1-bakedArcA0)*t;
-  // Sample arc points in world space → screen
   const STEPS=20;
   const da=(endA-bakedArcA0)/STEPS;
   gx.save();
@@ -1012,16 +902,12 @@ function drawTurnArcWorld(camX,camY,ch){
 function drawCar(wx,wy,hdg,col,cx,cy,ch){
   const p=w2s(wx,wy,cx,cy,ch),ang=hdg-ch;
   gx.save();gx.translate(p.sx,p.sy);gx.rotate(ang);
-  // Body — flat fill, no glow
   gx.fillStyle=col;
   if(gx.roundRect)gx.roundRect(-11,-18,22,36,5);else gx.rect(-11,-18,22,36);gx.fill();
-  // Windshield — muted, no bright highlight
   gx.fillStyle='rgba(140,100,160,.5)';
   if(gx.roundRect)gx.roundRect(-7,-14,14,10,3);else gx.rect(-7,-14,14,10);gx.fill();
-  // Wheels
   gx.fillStyle='rgba(40,0,60,.65)';
   [[-12,-10],[12,-10],[-12,8],[12,8]].forEach(([x,y])=>{gx.save();gx.translate(x,y);gx.fillRect(-3,-4,6,8);gx.restore();});
-  // Headlights — subtle
   gx.fillStyle='rgba(255,240,200,.7)';gx.fillRect(-8,-20,4,3);gx.fillRect(4,-20,4,3);
   if(signalDir){
     const blink=Math.floor(Date.now()/300)%2===0;
@@ -1045,7 +931,7 @@ function drawObs(o,cx,cy,ch){
   gx.fillStyle=g2;
   if(gx.roundRect)gx.roundRect(-13,-16,26,32,5);else gx.rect(-13,-16,26,32);gx.fill();
   gx.shadowBlur=0;gx.fillStyle='rgba(255,255,255,.95)';gx.font='bold 12px sans-serif';
-  gx.textAlign='center';gx.textBaseline='middle';gx.fillText('⚠',0,0);gx.restore();
+  gx.textAlign='center';gx.textBaseline='middle';gx.fillText('!',0,0);gx.restore();
 }
 
 function drawParticles(cx,cy,ch){
@@ -1077,41 +963,23 @@ function drawHUD(){
   if(gx.roundRect)gx.roundRect(12,12,168,58,10);else gx.rect(12,12,168,58);gx.fill();gx.shadowBlur=0;
   gx.fillStyle='#7c3aed';gx.font='600 11px Inter,sans-serif';gx.textAlign='left';gx.textBaseline='top';
   gx.fillText(`speed  ${carSpd.toFixed(1)} m/s`,20,20);
-  gx.fillText(`lane   ${curLane===0?'kerb':'inner'}`,20,35);
+  gx.fillText(`lane   ${curLane===0?'curb':'inner'}`,20,35);
   gx.fillText(`score  ${Math.floor(score)}`,20,50);
   gx.restore();
-
-  if(!juncCommitted){
-    const dist=juncDist-distInSeg;
-    if(dist<600){
-      const alpha=Math.min(1,(600-dist)/250);
-      gx.save();gx.globalAlpha=alpha;
-      gx.fillStyle='rgba(253,242,255,.95)';gx.shadowColor='rgba(236,72,153,.25)';gx.shadowBlur=14;
-      if(gx.roundRect)gx.roundRect(GW/2-155,12,310,32,8);else gx.rect(GW/2-155,12,310,32);gx.fill();gx.shadowBlur=0;
-      gx.fillStyle='#e11d73';gx.font='bold 11.5px Inter,sans-serif';gx.textAlign='center';gx.textBaseline='middle';
-      const arrow=pendingTurn==='left'?'↰ LEFT':pendingTurn==='right'?'↱ RIGHT':pendingTurn==='straight'?'↑ STRAIGHT':'press L / R / S';
-      gx.fillText(`⚠ intersection  ·  ${arrow}`,GW/2,28);
-      if((pendingTurn==='left'||pendingTurn==='right')&&Math.floor(Date.now()/300)%2===0){
-        gx.fillStyle='#fb923c';gx.font='bold 16px Inter,sans-serif';
-        gx.fillText(pendingTurn==='left'?'◄':' ►',pendingTurn==='left'?GW/2-148:GW/2+148,28);
-      }
-      gx.restore();
-    }
-  }
 
   if(stopped){
     gx.save();
     gx.fillStyle='rgba(253,242,255,.95)';gx.shadowColor='rgba(236,72,153,.2)';gx.shadowBlur=22;
-    if(gx.roundRect)gx.roundRect(GW/2-190,GH/2-22,380,44,10);else gx.rect(GW/2-190,GH/2-22,380,44);gx.fill();gx.shadowBlur=0;
-    gx.fillStyle='#e11d73';gx.font='bold 14px Inter,sans-serif';gx.textAlign='center';gx.textBaseline='middle';
-    gx.fillText('⏸  stopped — press Space or click Resume',GW/2,GH/2);gx.restore();
+    if(gx.roundRect)gx.roundRect(GW/2-160,GH/2-22,320,44,10);else gx.rect(GW/2-160,GH/2-22,320,44);gx.fill();gx.shadowBlur=0;
+    gx.fillStyle='#e11d73';gx.font='bold 13px Inter,sans-serif';gx.textAlign='center';gx.textBaseline='middle';
+    gx.fillText('Stopped — press Space or click Resume',GW/2,GH/2);gx.restore();
   }
 
   if(!canvasFocused){
     gx.save();gx.fillStyle='rgba(30,0,48,.5)';gx.fillRect(0,GH-34,GW,34);
     gx.fillStyle='rgba(255,255,255,.9)';gx.font='600 11px Inter,sans-serif';
     gx.textAlign='center';gx.textBaseline='middle';
-    gx.fillText('🖱 Click canvas to enable keyboard controls',GW/2,GH-17);gx.restore();
+    gx.fillText('Click canvas to enable keyboard controls',GW/2,GH-17);gx.restore();
   }
 }
 
@@ -1127,10 +995,8 @@ function commitTurn(dir){
   const fd=sDir(s.hdg);
   const jx=s.sx+fd.dx*juncDist, jy=s.sy+fd.dy*juncDist;
 
-  // Trim old segment at junction and immediately switch to the new one
   s.len=juncDist; s.ex=jx; s.ey=jy;
   addSeg(newHdg, jx, jy, 4000+Math.random()*1000);
-  // Jump to new segment now; distInSeg = overshoot past junction
   const overshoot = Math.max(0, distInSeg - juncDist);
   distInSeg = overshoot;
   curSegIdx++;
@@ -1148,14 +1014,14 @@ function commitTurn(dir){
     bakedArcA1=bakedArcA0+(dir==='left' ? -Math.PI/2 : Math.PI/2);
     bakedArcLeft=(dir==='left');
   }
-  appendLog(`[NAV] ${dir==='left'?'← left':dir==='right'?'right →':'↑ straight'}`,'ln');
+  appendLog(`[NAV] ${dir==='left'?'left turn':dir==='right'?'right turn':'straight'}`, 'ln');
   spawnP(jx,jy,dir==='left'?'#a855f7':'#ec4899',16);
   scheduleNextJunc();
 }
 
 function scheduleNextJunc(){
   juncDist=distInSeg+900+Math.random()*400; juncCommitted=false; pendingTurn=null;
-  appendLog('[NAV] intersection ahead — press L / R / S','ln');
+  appendLog('[NAV] intersection ahead','ln');
 }
 
 let lastTS=0;
@@ -1178,7 +1044,6 @@ function update(ts){
 
   distInSeg+=spd*dt*60;
   const s=segs[curSegIdx];
-  // Trigger junction commit when car reaches it (commitTurn handles segment switch)
   if(!juncCommitted && distInSeg>=juncDist-JUNC_R){
     commitTurn(pendingTurn||'straight'); pendingTurn=null;
   }
@@ -1195,7 +1060,7 @@ function update(ts){
         const lane=Math.round(Math.random());
         const roadCX=os.sx+od.dx*spawnD,roadCY=os.sy+od.dy*spawnD;
         const tooClose=obsArr.filter(o=>o.alive&&o.lane===lane).some(o=>Math.hypot(o.wx-roadCX-orn.dx*LO[lane],o.wy-roadCY-orn.dy*LO[lane])<90);
-        if(!tooClose){obsArr.push({wx:roadCX+orn.dx*LO[lane],wy:roadCY+orn.dy*LO[lane],lane,alive:true});appendLog(`[OBSTACLE] 👁 ${lane===0?'kerb':'inner'} lane`,'lo');}
+        if(!tooClose){obsArr.push({wx:roadCX+orn.dx*LO[lane],wy:roadCY+orn.dy*LO[lane],lane,alive:true});appendLog(`[OBSTACLE] detected in ${lane===0?'curb':'inner'} lane`,'lo');}
       }
     }
     nextObsCd=250+Math.random()*200;
@@ -1203,7 +1068,7 @@ function update(ts){
 
   if(!juncCommitted){const fd2=sDir(s.hdg);const jx2=s.sx+fd2.dx*juncDist,jy2=s.sy+fd2.dy*juncDist;obsArr.forEach(o=>{if(o.alive&&Math.hypot(o.wx-jx2,o.wy-jy2)<ROAD_HW*2.5)o.alive=false;});}
   for(let i=0;i<segs.length-1;i++){const sv=segs[i];obsArr.forEach(o=>{if(o.alive&&Math.hypot(o.wx-sv.ex,o.wy-sv.ey)<ROAD_HW*2.5)o.alive=false;});}
-  obsArr.forEach(o=>{if(!o.alive)return;if(Math.hypot(wp.cx-o.wx,wp.cy-o.wy)<20){o.alive=false;spawnP(wp.cx,wp.cy,'#c026d3',16);score=Math.max(0,score-20);appendLog('[OBSTACLE] ⚡ collision −20','lo');}});
+  obsArr.forEach(o=>{if(!o.alive)return;if(Math.hypot(wp.cx-o.wx,wp.cy-o.wy)<20){o.alive=false;spawnP(wp.cx,wp.cy,'#c026d3',16);score=Math.max(0,score-20);appendLog('[OBSTACLE] collision -20','lo');}});
   if(laneT>=1){
     const fwd=sDir(s.hdg),LOOK=350;
     function fd3(o){return(o.wx-wp.cx)*fwd.dx+(o.wy-wp.cy)*fwd.dy;}
@@ -1214,8 +1079,8 @@ function update(ts){
   obsArr=obsArr.filter(o=>{if(!o.alive)return false;const fwd=sDir(s.hdg);return(o.wx-wp.cx)*fwd.dx+(o.wy-wp.cy)*fwd.dy>-250;});
   score+=carSpd*dt*0.06;
   document.getElementById('scorev').textContent=Math.floor(score);
-  document.getElementById('obsv').textContent=obsArr.filter(o=>o.alive).length?`⚠ ${obsArr.filter(o=>o.alive).length}`:'None';
-  document.getElementById('modev').textContent=stopped?'⏸ Stopped':'Autonomous';
+  document.getElementById('obsv').textContent=obsArr.filter(o=>o.alive).length?`! ${obsArr.filter(o=>o.alive).length}`:'None';
+  document.getElementById('modev').textContent=stopped?'Stopped':'Autonomous';
   document.getElementById('modev').style.color=stopped?'#c026d3':'#7c3aed';
 }
 
@@ -1223,9 +1088,9 @@ function lerpAngle(a,b,t){let d=b-a;while(d>Math.PI)d-=2*Math.PI;while(d<-Math.P
 
 function gameLoop(ts){
   update(ts);
-  const wp=carPos(); // always from road position, no arc override
+  const wp=carPos();
   const s=segs[curSegIdx];
-  const ch=s?s.hdg:HDG_U; // camera heading = current segment heading (stable)
+  const ch=s?s.hdg:HDG_U;
   const fd=sDir(ch);
   const camX=wp.cx+fd.dx*100,camY=wp.cy+fd.dy*100;
 
@@ -1243,62 +1108,49 @@ function gameLoop(ts){
 
   drawParticles(camX,camY,ch);
   obsArr.forEach(o=>drawObs(o,camX,camY,ch));
-  drawTurnArcWorld(camX,camY,ch); // arc in world coords → stable
+  drawTurnArcWorld(camX,camY,ch);
   drawCar(wp.cx,wp.cy,carHdg,stopped?'#c4b5fd':'#f08baf',camX,camY,ch);
   drawHUD();
   requestAnimationFrame(gameLoop);
 }
 requestAnimationFrame(ts=>{lastTS=ts;gameLoop(ts);});
 
-// ── Controls ──
+// Controls
 function doLaneChange(nl,src='gesture'){
   if(laneT<1||nl===curLane)return;
   laneFromOff=LO[curLane];laneToOff=LO[nl];targLane=nl;laneT=0;updateLaneUI();
-  appendLog(`[LANE] [${src}] → ${nl===0?'kerb':'inner'}`,'lg');
+  appendLog(`[LANE] [${src}] -> ${nl===0?'curb':'inner'}`,'lg');
   const wp=carPos();spawnP(wp.cx,wp.cy,'#c026d3',8);
 }
 function updateLaneUI(){
   document.getElementById('l0').classList.toggle('on',targLane===0||(laneT>=1&&curLane===0));
   document.getElementById('l1').classList.toggle('on',targLane===1||(laneT>=1&&curLane===1));
 }
-function gestureFist(){stopped=true;document.getElementById('stopbtn').textContent='▶ Resume';appendLog('[GESTURE] ✊ stopped','lg');}
-function gestureOpen(){if(stopped){stopped=false;document.getElementById('stopbtn').textContent='⏸ Stop';appendLog('[GESTURE] 🖐 resumed','lg');}}
-function chooseDir(dir){
-  pendingTurn=dir;signalDir=dir==='straight'?null:dir;signalTimer=200;
-  appendLog(`[NAV] queued: ${dir==='left'?'← left':dir==='right'?'right →':'↑ straight'}`,'ln');
-}
+function gestureFist(){stopped=true;document.getElementById('stopbtn').textContent='Resume';appendLog('[GESTURE] fist: stopped','lg');}
+function gestureOpen(){if(stopped){stopped=false;document.getElementById('stopbtn').textContent='Stop';appendLog('[GESTURE] open palm: resumed','lg');}}
 function updateSpeedUI(){
   document.getElementById('spv').textContent=carSpd.toFixed(1)+' m/s';
   document.getElementById('spb').style.width=((carSpd-1)/12*100)+'%';
 }
-function appendLog(msg,cls){
-  const a=document.getElementById('logarea');
-  const d=document.createElement('div');if(cls)d.className=cls;d.textContent=msg;
-  a.appendChild(d);while(a.children.length>40)a.removeChild(a.firstChild);a.scrollTop=a.scrollHeight;
-}
-function kbSpeedUp(){carSpd=Math.min(13,+(carSpd+1).toFixed(1));updateSpeedUI();appendLog(`[KB] ↑ speed=${carSpd}`,'ln');flashKey('dk-up');}
-function kbSpeedDown(){carSpd=Math.max(1,+(carSpd-1).toFixed(1));updateSpeedUI();appendLog(`[KB] ↓ speed=${carSpd}`,'ln');flashKey('dk-down');}
+function appendLog(msg,cls){}
+function kbSpeedUp(){carSpd=Math.min(13,+(carSpd+1).toFixed(1));updateSpeedUI();appendLog(`[KB] speed up -> ${carSpd}`,'ln');flashKey('dk-up');}
+function kbSpeedDown(){carSpd=Math.max(1,+(carSpd-1).toFixed(1));updateSpeedUI();appendLog(`[KB] speed down -> ${carSpd}`,'ln');flashKey('dk-down');}
 function kbStop(){if(stopped){gestureOpen();flashKey('dk-space');}else{gestureFist();flashKey('dk-space');}}
 function flashKey(id){const el=document.getElementById(id);if(!el)return;el.classList.add('pressed');setTimeout(()=>el.classList.remove('pressed'),180);}
 
 appendLog('[INIT] simulation ready','ln');
-appendLog('[INPUT] keyboard: ←→ lanes · ↑↓ speed · space stop','');
-appendLog('[INPUT] turn: L left · R right · S straight','');
+appendLog('[INPUT] arrow keys: lanes and speed, space: stop/go','');
 
-const keyDpadMap={'ArrowUp':'dk-up','ArrowDown':'dk-down','ArrowLeft':'dk-left','ArrowRight':'dk-right',' ':'dk-space','l':'dk-l','L':'dk-l','r':'dk-r','R':'dk-r','s':'dk-s','S':'dk-s','n':'dk-n','N':'dk-n'};
+const keyDpadMap={'ArrowUp':'dk-up','ArrowDown':'dk-down','ArrowLeft':'dk-left','ArrowRight':'dk-right',' ':'dk-space'};
 document.addEventListener('keydown',e=>{
   if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
   if(keyDpadMap[e.key])flashKey(keyDpadMap[e.key]);
   if(e.key==='ArrowLeft'){e.preventDefault();doLaneChange(0,'kb');}
   else if(e.key==='ArrowRight'){e.preventDefault();doLaneChange(1,'kb');}
-  else if(e.key==='ArrowUp'){e.preventDefault();carSpd=Math.min(13,+(carSpd+1).toFixed(1));updateSpeedUI();appendLog(`[KB] ↑ speed=${carSpd}`,'ln');}
-  else if(e.key==='ArrowDown'){e.preventDefault();carSpd=Math.max(1,+(carSpd-1).toFixed(1));updateSpeedUI();appendLog(`[KB] ↓ speed=${carSpd}`,'ln');}
+  else if(e.key==='ArrowUp'){e.preventDefault();carSpd=Math.min(13,+(carSpd+1).toFixed(1));updateSpeedUI();appendLog(`[KB] speed up -> ${carSpd}`,'ln');}
+  else if(e.key==='ArrowDown'){e.preventDefault();carSpd=Math.max(1,+(carSpd-1).toFixed(1));updateSpeedUI();appendLog(`[KB] speed down -> ${carSpd}`,'ln');}
   else if(e.key===' '){e.preventDefault();stopped?gestureOpen():gestureFist();}
-  else if(e.key==='l'||e.key==='L')chooseDir('left');
-  else if(e.key==='r'||e.key==='R')chooseDir('right');
-  else if(e.key==='s'||e.key==='S')chooseDir('straight');
-  else if(e.key==='n'||e.key==='N')appendLog('[KB] autopilot active','ln');
-  else if(e.key>='1'&&e.key<='9'){carSpd=Math.min(13,parseInt(e.key));updateSpeedUI();appendLog(`[KB] speed=${carSpd}`,'ln');}
+  else if(e.key>='1'&&e.key<='9'){carSpd=Math.min(13,parseInt(e.key));updateSpeedUI();appendLog(`[KB] speed -> ${carSpd}`,'ln');}
 });
 
 // MEDIAPIPE GESTURE RECOGNIZER
@@ -1306,7 +1158,6 @@ let gestureRecognizer=null,camRunning=false,mpCam=null,lastGest=null,gestCD=0;
 const vidEl=document.getElementById('camVid'),camCvs=document.getElementById('camCvs'),camCtx2=camCvs.getContext('2d');
 
 async function initGestureRecognizer(){
-  // tasks-vision bundle exposes classes directly on window
   const GestureRecognizer=window.GestureRecognizer||window.vision?.GestureRecognizer;
   const FilesetResolver=window.FilesetResolver||window.vision?.FilesetResolver;
   const vision=await FilesetResolver.forVisionTasks(
@@ -1327,8 +1178,8 @@ async function initGestureRecognizer(){
 }
 
 async function toggleCamera(){
-  if(camRunning){if(mpCam)try{mpCam.stop();}catch(e){}camRunning=false;document.getElementById('cambtn').textContent='📷 Enable Camera';document.getElementById('cambtn').classList.remove('on');return;}
-  document.getElementById('cambtn').textContent='Starting…';
+  if(camRunning){if(mpCam)try{mpCam.stop();}catch(e){}camRunning=false;document.getElementById('cambtn').textContent='Enable Camera';document.getElementById('cambtn').classList.remove('on');return;}
+  document.getElementById('cambtn').textContent='Starting...';
   try{
     if(!gestureRecognizer) await initGestureRecognizer();
     const stream=await navigator.mediaDevices.getUserMedia({video:{width:240,height:180,facingMode:'user'}});
@@ -1345,19 +1196,18 @@ async function toggleCamera(){
       width:240,height:180
     });
     mpCam.start();camRunning=true;
-    document.getElementById('cambtn').textContent='📷 Camera ON';document.getElementById('cambtn').classList.add('on');
-    appendLog('[GESTURE] GestureRecognizer active','lg');
-  }catch(err){document.getElementById('cambtn').textContent='📷 Camera denied';appendLog('[GESTURE] '+err.message,'');}
+    document.getElementById('cambtn').textContent='Camera ON';document.getElementById('cambtn').classList.add('on');
+    appendLog('[GESTURE] recognizer active','lg');
+  }catch(err){document.getElementById('cambtn').textContent='Camera denied';appendLog('[GESTURE] '+err.message,'');}
 }
 
-// Map MediaPipe GestureRecognizer category names to our commands
 const GESTURE_MAP={
   'Closed_Fist':'fist',
   'Open_Palm':'palm',
   'Thumb_Up':'thumb_up',
   'Thumb_Down':'thumb_down',
-  'Victory':'victory',
-  'ILoveYou':'palm', // treat as open
+  'Victory':'palm',
+  'ILoveYou':'palm',
   'Pointing_Up':'palm',
 };
 
@@ -1369,7 +1219,6 @@ function onGestureResults(results){
     document.getElementById('glabel').textContent='no hand';lastGest=null;gestCD=0;return;
   }
 
-  // Draw landmarks
   const lm=results.landmarks[0];
   if(window.drawConnectors&&window.HAND_CONNECTIONS){
     drawConnectors(camCtx2,lm,HAND_CONNECTIONS,{color:'rgba(192,38,211,.5)',lineWidth:1.2});
@@ -1387,41 +1236,38 @@ function onGestureResults(results){
   if(g===lastGest)return;lastGest=g;
   if(g==='fist'){gestureFist();gestCD=25;}
   else if(g==='palm'){gestureOpen();gestCD=20;}
-  else if(g==='thumb_up'){doLaneChange(0,'gesture');appendLog('[GESTURE] 👍 kerb','lg');gestCD=35;}
-  else if(g==='thumb_down'){doLaneChange(1,'gesture');appendLog('[GESTURE] 👎 inner','lg');gestCD=35;}
+  else if(g==='thumb_up'){doLaneChange(0,'gesture');appendLog('[GESTURE] thumbs up: curb lane','lg');gestCD=35;}
+  else if(g==='thumb_down'){doLaneChange(1,'gesture');appendLog('[GESTURE] thumbs down: inner lane','lg');gestCD=35;}
 }
 
 // SPEECH
 let SR=window.SpeechRecognition||window.webkitSpeechRecognition,recog=null,speechOn=false;
 function toggleSpeech(){
   if(speechOn){stopSpeech();return;}
-  if(!SR){appendLog('[SPEECH] not supported','');document.getElementById('micbtn').textContent='🎤 Not supported';return;}
+  if(!SR){appendLog('[SPEECH] not supported','');document.getElementById('micbtn').textContent='Not supported';return;}
   recog=new SR();recog.continuous=true;recog.interimResults=true;recog.lang='en-US';
-  recog.onstart=()=>{speechOn=true;document.getElementById('micbtn').textContent='🎤 Listening…';document.getElementById('micbtn').classList.add('on');document.getElementById('sbox').classList.add('pulsing');appendLog('[SPEECH] mic active','lc');};
+  recog.onstart=()=>{speechOn=true;document.getElementById('micbtn').textContent='Listening...';document.getElementById('micbtn').classList.add('on');document.getElementById('sbox').classList.add('pulsing');appendLog('[SPEECH] mic active','lc');};
   recog.onerror=e=>{appendLog('[SPEECH] '+e.error,'');stopSpeech();};
   recog.onend=()=>{if(speechOn)try{recog.start();}catch(e){}};
   recog.onresult=e=>{
     let final='';
-    for(let i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)final+=e.results[i][0].transcript;else document.getElementById('sheard').textContent='…'+e.results[i][0].transcript;}
+    for(let i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)final+=e.results[i][0].transcript;else document.getElementById('sheard').textContent='...'+e.results[i][0].transcript;}
     if(final){processSpeech(final.trim().toLowerCase());document.getElementById('sheard').textContent='';}
   };
   try{recog.start();}catch(e){appendLog('[SPEECH] '+e.message,'');}
 }
 function stopSpeech(){
   if(recog)try{recog.stop();}catch(e){}
-  speechOn=false;document.getElementById('micbtn').textContent='🎤 Enable Microphone';
+  speechOn=false;document.getElementById('micbtn').textContent='Enable Microphone';
   document.getElementById('micbtn').classList.remove('on');document.getElementById('sbox').classList.remove('pulsing');
 }
 function processSpeech(t){
   document.getElementById('sheard').textContent=`"${t}"`;appendLog(`[SPEECH] "${t}"`,'lc');
-  if(t.includes('faster')||t.includes('speed up')){carSpd=Math.min(13,+(carSpd+1).toFixed(1));updateSpeedUI();appendLog(`[SPEECH] ↑ speed=${carSpd}`,'ln');}
-  else if(t.includes('slower')||t.includes('slow down')){carSpd=Math.max(1,+(carSpd-1).toFixed(1));updateSpeedUI();appendLog(`[SPEECH] ↓ speed=${carSpd}`,'ln');}
+  if(t.includes('faster')||t.includes('speed up')){carSpd=Math.min(13,+(carSpd+1).toFixed(1));updateSpeedUI();appendLog(`[SPEECH] speed up -> ${carSpd}`,'ln');}
+  else if(t.includes('slower')||t.includes('slow down')){carSpd=Math.max(1,+(carSpd-1).toFixed(1));updateSpeedUI();appendLog(`[SPEECH] speed down -> ${carSpd}`,'ln');}
   else if(t.includes('stop')||t.includes('halt'))gestureFist();
   else if(t.includes('go')||t.includes('resume')||t.includes('start')){if(stopped)gestureOpen();}
-  else if(t.includes('left')&&!t.includes('right'))chooseDir('left');
-  else if(t.includes('right')&&!t.includes('left'))chooseDir('right');
-  else if(t.includes('straight')||t.includes('forward'))chooseDir('straight');
-  else if(t.includes('kerb')||t.includes('curb'))doLaneChange(0,'speech');
+  else if(t.includes('curb'))doLaneChange(0,'speech');
   else if(t.includes('inner'))doLaneChange(1,'speech');
   else appendLog(`[SPEECH] unrecognized: "${t}"`,'');
 }
